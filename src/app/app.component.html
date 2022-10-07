@@ -1,0 +1,283 @@
+<nav class="navbar navbar-expand navbar-light bg-primary d-flex justify-content-between">
+  <div class="navbar-brand mb-0 h1 text-white">RESUME BUILDER</div>
+</nav>
+<div class="container-fluid">
+  <form #resumeForm="ngForm">
+    <div class="row">
+      <div class="col-md-8">
+        <!--Personal details-->
+        <div class="shadow-sm card">
+          <div class="card-body">
+           <h4 class="card-title d-flex align-items-center">
+             <i class="material-icons">account_circle</i>Personal Details
+           </h4>
+             <div class="row">
+              <div class="col-md-6">
+               <div class="form-group">
+                 <input type="text" class="form-control" [(ngModel)]="resume.name" name="FirstNameMiddleNameLastName"
+                            placeholder="FirstNameMiddleNameLastName" #Name="ngModel" required
+                            [ngClass]="{'is-invalid': Name.invalid && (Name.touched || resumeForm.submitted) }">
+               </div>
+               <div class="form-group">
+                 <input type="text" class="form-control" [(ngModel)]="resume.email" name="emailId"
+                            placeholder="Email ID" #Email="ngModel" required
+                            [ngClass]="{'is-invalid': Email.invalid && (Email.touched || resumeForm.submitted) }">
+               </div>
+              </div>
+              <div class="col-md-6">
+               <div class="form-group">
+                            <input type="tel" class="form-control" [(ngModel)]="resume.contactNo" name="contactNo"
+                              placeholder="Contact No." #ContactNo="ngModel" required
+                              [ngClass]="{'is-invalid': ContactNo.invalid && (ContactNo.touched || resumeForm.submitted) }">
+               </div>
+               <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="resume.location" name="Location"
+                                placeholder="Ex: India,USA etc" #Location="ngModel" required
+                                [ngClass]="{'is-invalid': Location.invalid && (Location.touched || resumeForm.submitted) }">
+               </div>
+              </div>
+              <!--<div class="col-md-6">
+               <div class="form-group">
+                          <input type="text" class="form-control" [(ngModel)]="resume.Languages" name="Languages"
+                            placeholder="Languages ">
+               </div>
+               <div class="form-group">
+                          <input type="text" class="form-control" [(ngModel)]="resume.Interests" name="Interests"
+                            placeholder="Interests ">
+               </div>
+              </div>-->
+             </div>
+          </div>
+        </div>
+        <!-- Languages -->
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                <i class="material-icons">language</i>
+                Languages</h4>
+              <button class="btn btn-primary" (click)="addLanguages()">+</button>
+            </div>
+            <div class="row">
+              <div class="col-md-4" *ngFor="let s of resume.languages; let i=index">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="languages{{i}}" [(ngModel)]="s.value"
+                    placeholder="e.g. English.., etc " #Languages="ngModel" required
+                    [ngClass]="{'is-invalid': Languages.invalid && (Languages.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                <i class="material-icons">dashboard</i>
+                Interests</h4>
+              <button class="btn btn-primary" (click)="addInterests()">+</button>
+            </div>
+            <div class="row">
+              <div class="col-md-4" *ngFor="let s of resume.interests; let i=index">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="interests{{i}}" [(ngModel)]="s.value"
+                    placeholder="Travelling.., etc" #Interests="ngModel" required
+                    [ngClass]="{'is-invalid': Interests.invalid && (Interests.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Technical Skills -->
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                <i class="material-icons">timeline</i>
+                Technical Skills</h4>
+              <button class="btn btn-primary" (click)="addTechnicalSkills()">+</button>
+            </div>
+            <div class="row">
+              <div class="col-md-4" *ngFor="let s of resume.technicalSkills; let i=index">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="technicalSkills{{i}}" [(ngModel)]="s.value"
+                    placeholder="e.g. Java / Angular / .Net " #Skill="ngModel" required
+                    [ngClass]="{'is-invalid': TechnicalSkills.invalid && (TechnicalSkills.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- FunctionalSkills -->
+
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                 <i class="material-icons">timeline</i>Functional Skills</h4>
+                 <button class="btn btn-primary"(click)="addFunctionalSkills()">+</button>
+            </div>
+            <div class="row">
+              <div class="col-md-4" *ngFor="let s of resume.functionalSkills; let i=index">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="functionalSkills{{i}}" [(ngModel)]="s.value"
+                    placeholder="e.g. Communication / leadership / management " #Skill="ngModel" required
+                    [ngClass]="{'is-invalid':FunctionalSkills.invalid && (FunctionalSkills.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Experience -->
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                <i class="material-icons">
+                  Project
+                </i>
+                Experience</h4>
+              <button class="btn btn-primary" (click)="addProjectExperience()">+</button>
+            </div>
+            <div class="row" *ngFor="let ex of resume.experiences; let i=index">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="Organization{{i}}" [(ngModel)]="ex.Organization"
+                    placeholder="Organization" #Organization="ngModel" required
+                    [ngClass]="{'is-invalid': Organization.invalid && (Organization.touched || resumeForm.submitted) }">
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="Role{{i}}" [(ngModel)]="ex.Role"
+                      placeholder="Role" #Role="ngModel" required
+                      [ngClass]="{'is-invalid': Role.invalid && (Role.touched || resumeForm.submitted) }">
+                  </div>
+                  <div class="form-group">
+                   <div class="form-group">
+                     <textarea class="form-control" name="Description of Experience{{i}}" [(ngModel)]="ex.Description of ExperienceobDescription" rows="3"
+                      placeholder=" Description of Experience"></textarea>
+                   </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+        </div>
+        <!-- Technical Training -->
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                <i class="material-icons">
+                  Technical
+                </i>
+                Training</h4>
+              <button class="btn btn-primary" (click)="addTechnicalTraining()">+</button>
+            </div>
+            <div class="row" *ngFor="let ed of resume.addTechnicalTraining; let i=index">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="Organization{{i}}" [(ngModel)]="ex.Organization"
+                  placeholder="Organization" #Organization="ngModel" required
+                  [ngClass]="{'is-invalid': Organization.invalid && (Organization.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="Role{{i}}" [(ngModel)]="ed.Role"
+                    placeholder="Role" #Role="ngModel" required
+                    [ngClass]="{'is-invalid': Role.invalid && (Role.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <textarea class="form-control" name="Description of Experience{{i}}" [(ngModel)]="ex.Description of ExperienceobDescription" rows="3"
+                    placeholder=" Description of Experience"></textarea>
+                </div>
+              </div>
+                 
+            </div>
+          </div>
+        </div>
+
+        <!-- Certification & Awards -->
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between card-title">
+              <h4 class="d-flex align-items-center">
+                <i class="material-icons">
+                  school
+                </i>
+                Certification </h4>
+              <button class="btn btn-primary" (click)="addCertifications()">+</button>
+            </div>
+            <div class="row" *ngFor="let ed of resume.certifications; let i=index">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select class="form-control" placeholder="Certificate Name" name="certificateName{{i}}" [(ngModel)]="ed.certificateName"
+                    #CertificateName="ngModel" required
+                    [ngClass]="{'is-invalid': CertificateName.invalid && (CertificateName.touched || resumeForm.submitted) }">
+                    <option [value]="d" *ngFor="let d of certifications">{{d}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="organization{{i}}" [(ngModel)]="ed.organization"
+                    placeholder="Organization" #Organization="ngModel" required
+                    [ngClass]="{'is-invalid': Organization.invalid && (Organization.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="year{{i}}" [(ngModel)]="ed.year"
+                    placeholder="Year" #Year="ngModel" required
+                    [ngClass]="{'is-invalid': Year.invalid && (Year.touched || resumeForm.submitted) }">
+                </div>
+              </div>
+             </div>
+          </div>
+        </div>
+
+      <!--Print download -->
+      <div class="col-md-4">
+        <div class="shadow-sm card action-buttons">
+          <button (click)="resumeForm.valid ? generatePdf('open') : ''"
+            class="btn btn-primary d-flex align-items-center justify-content-center">
+           <i class="material-icons">
+             picture_as_pdf
+           </i> <span>Open PDF</span></button>
+          <button (click)="resumeForm.valid ? generatePdf('download') : ''"
+            class="btn btn-primary d-flex align-items-center justify-content-center">
+             <i class="material-icons">
+               cloud_download
+            </i><span>Download PDF</span></button>
+          <button (click)="resumeForm.valid ? generatePdf('print') : ''"
+            class="btn btn-primary d-flex align-items-center justify-content-center">
+             <i class="material-icons">
+               print
+             </i><span>Print PDF</span></button>
+
+           <button type='reset' (click)="resetForm()" class="btn btn-primary d-flex align-items-center justify-content-center">
+             <i class="material-icons">
+                clear
+             </i><span>Reset</span></button>
+       </div>
+
+       <div class="card p-4">
+          <div class="form-group">
+            <label class="h4 mb-3" for="">Show your picture in Resume</label>
+             <input type="file" class="form-control-file" (change)="fileChanged($event)" aria-describedby="fileHelpId">
+          </div>
+           <img *ngIf="resume.profilePic" [src]="resume.profilePic" class="img-thumbnail">
+       </div>
+      </div>
+    </div>
+  </form>
+</div>
