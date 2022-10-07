@@ -61,7 +61,7 @@ export class AppComponent {
   addEducations() {
     this.resume.educations.push(new Educations());
   }
-  addtechnicalTrainings(){
+  addTechnicalTrainings(){
     this.resume.technicalTrainings.push(new TechnicalTrainings());
   }
   addCertifications(){
